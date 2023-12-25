@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
+const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3000";
 
 class DJApi {
     static async request(endpoint, data = {}, method = "get") {
@@ -31,7 +31,7 @@ class DJApi {
         try {
             const response = await axios.get(oEmbedUrl, {
                 params: {
-                    format: 'json',
+                    format: 'json', 
                     url: trackUrl,
                     iframe: true // Additional parameters can be added as needed
                 }
