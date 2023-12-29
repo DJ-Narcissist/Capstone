@@ -1,2 +1,6 @@
 /node_modules
 website.env
+.env*
+.flaskenv*
+!.env.project
+!.env.vault

@@ -5,6 +5,11 @@ const EventModel = require('../models/event');
 const MixModel = require('../models/mix');
 const GalleryModel = require('../models/gallery');
 
+// Route for Homepage
+router.get('/', (req, res) => {
+    res.send("Welcome To DJ Narcissist's website")
+});
+
 // Route to get all upcoming events
 router.get('/events/upcoming', async (req, res) => {
     try {
