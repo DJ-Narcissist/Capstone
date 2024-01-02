@@ -1,7 +1,6 @@
 const express = require('express');
 const { isAuthenticated, isAdmin } = require('../middleware/auth');
 const EventModel = require('../models/event');
-const GalleryModel = require('../models/gallery');
 const router = express.Router();
 
 router.use(isAuthenticated, isAdmin);
@@ -62,40 +61,7 @@ router.delete('/:eventId', async (req, res) => {
 });
 
 
-// Add an image to the gallery (Admin side)
-router.post('/gallery', async (req, res) => {
-    try {
-        const newImage = await GalleryModel.addImage(req.body);
-        res.status(201).json(newImage);
-    } catch (err) {
-        res.status(500).send(err.message)
-    }
-});
 
-// Update image in the gallery (Admin side)
-router.put('/:imageId', async (req, res) => {
-    try {
-        const updatedImage = await GalleryModel.update(req.params.imageId, req.body);
-        res.json(updatedImage);
-    } catch (err) {
-        res.status(500).send(err.message);
-    }
-});
-
-// Delete image in the gallery
-router.delete('/:imageId', async (req, res) => {
-    try {
-        const imageId = req.params.imageId;
-        const deletedImage = await GalleryModel.remove(imageId);
-        if (deletedImage) {
-            res.json({ message: `Event with ID ${imageId} has been deleted` });
-        } else {
-            res.status(404).send(`Event with ID ${imageId} not found`);
-        }
-    } catch (err) {
-        res.status(500).send(err.message);
-    }
-});
 module.exports = router;
 
 // For debugging purposes: print out database connection string

@@ -1,0 +1,14 @@
+.mix-show-list {
+    padding: 20px;
+    background-color: #f3f3f3;
+}
+
+.mix-show {
+    margin-bottom: 15px;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.mix-show h3 {
+    color: red;
+}

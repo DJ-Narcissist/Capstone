@@ -1,0 +1,16 @@
+.about {
+    text-align:center;
+    padding: 20px;
+    background-color: black;
+    color: yellow;
+}
+
+.about h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.about p {
+    font-size: 1rem;
+    line-height: 1.6;
+}

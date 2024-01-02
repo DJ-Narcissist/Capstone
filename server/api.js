@@ -1,48 +1,30 @@
-import axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5000";
+const express = require('express');
+const app = express();
+const db = require('./db');
 
-class DJApi {
-    static async request(endpoint, data = {}, method = "get") {
-        console.debug("API Call:", endpoint, data, method);
-        const url = `${BASE_URL}/${endpoint}`;
-        const headers = {};
-        const params = (method === "get") ? data : {};
 
-        try {
-            return (await axios({ url, method, data, params, headers })).data;
-        } catch (err) {
-            console.error("API Error:", err.response);
-            let message = err.response.data.error.message;
-            throw Array.isArray(message) ? message : [message];
-        }
-    }
+app.post('/api/subscribe', (req, res) => {
+    const { email } = req.body;
+    // Add logic to handle the subscription, e.g., save to a database or mailing list
+    console.log('New subscription:', email);
+    res.json({ message: "Subscription successful" });
+});
 
-    // Existing API routes ...
+app.get('/api/soundcloud', (req, res) => {
+    res.json({
+        profileUrl: "https://soundcloud.com/dj-narcissist"
+    });
+});
 
-    /**
-     * Fetches embed code from SoundCloud's oEmbed API using axios.
-     * @param {string} trackUrl - The URL of the SoundCloud track or playlist.
-     * @returns {Promise} A promise that resolves with the embeddable content.
-     */
-    static async fetchSoundCloudEmbed(trackUrl) {
-        const oEmbedUrl = 'https://soundcloud.com/oembed';
 
-        try {
-            const response = await axios.get(oEmbedUrl, {
-                params: {
-                    format: 'json', 
-                    url: trackUrl,
-                    iframe: true // Additional parameters can be added as needed
-                }
-            });
 
-            return response.data; // This will contain the embed code
-        } catch (error) {
-            console.error('Error fetching SoundCloud embed:', error);
-            throw error;
-        }
-    }
-}
+db.connect('your-connection-string')
+.then(() => console.log('Connected to the database successfully'))
+.catch(err => {
+    console.error('Failed to connect to the database:', err);
+    process.exit(1); // Exit the process if cannot connect to the database
+});
 
-export default DJApi;
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

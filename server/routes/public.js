@@ -3,7 +3,7 @@ const router = express.Router();
 
 const EventModel = require('../models/event');
 const MixModel = require('../models/mix');
-const GalleryModel = require('../models/gallery');
+
 
 // Route for Homepage
 router.get('/', (req, res) => {
@@ -30,15 +30,7 @@ router.get('/mixes', async (req, res) => {
     }
 });
 
-// Route to get gallery images
-router.get('/gallery', async (req, res) => {
-    try {
-        const images = await GalleryModel.findAll();
-        res.json(images);
-    } catch (err) {
-        res.status(500).send(err.message);
-    }
-});
+
 
 
 

@@ -1,6 +1,6 @@
 
 CREATE TABLE users(
-    UserID TEXT PRIMARY KEY,
+    UserID INTEGER PRIMARY KEY,
     Username VARCHAR(100),
     Email TEXT UNIQUE
 );
@@ -13,14 +13,7 @@ CREATE TABLE events(
     Location VARCHAR(100)
 );
 
-CREATE TABLE bookings (
-    BookingID INTEGER PRIMARY KEY,
-    EventID INTEGER,
-    Booking_Date DATE,
-    Description TEXT,
-    Location VARCHAR(100) NOT NULL,
-    FOREIGN KEY (EventID) REFERENCES events (EventID)
-);
+
 
 CREATE TABLE mixes (
     TrackID INTEGER PRIMARY KEY,
@@ -29,23 +22,6 @@ CREATE TABLE mixes (
     Playlist_Title VARCHAR(100),
     Release_Date DATE,
     Genre TEXT
-);
-
-CREATE TABLE SocialPosts (
-    PostID INTEGER PRIMARY KEY,
-    UserID INTEGER,
-    Content TEXT,
-    PostData DATE,
-    Platform VARCHAR(50) 
-);
-
-
-CREATE TABLE Images (
-    ImageID INTEGER PRIMARY KEY,
-    UserID INTEGER,
-    Image_URL TEXT,
-    Description TEXT,
-    UploadDate DATE
 );
 
 CREATE TABLE Merchandise (

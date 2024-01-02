@@ -1,0 +1,52 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: yellow;
+}
+
+.logo a { 
+    color: red;
+    text-decoration: wavy;
+    font-size: 24px;
+}
+
+.navbar-toggler {
+    background: none;
+    border: none;
+    color:rgb(239, 13, 13);
+    font-size:  20px;
+    cursor: pointer;
+}
+
+.navbar { 
+    display: flow-root;
+}
+
+.navbar.open {
+    display: block;
+}
+
+.navbar-nav {
+    list-style: none;
+    padding: 0;
+}
+
+.navbar-nav a {
+    color: #dbce11;
+    text-decoration: none;
+    padding: auto;
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .navbar {
+        display: block;
+    }
+    .navbar-toggler {
+        display: none;
+    }
+
+}
